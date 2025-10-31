@@ -1,8 +1,42 @@
 from django.shortcuts import render
-from django.views.generic.base import TemplateView
+# django.views.genericからListView、DetailViewをインポート
+from django.views.generic import ListView, DetailView
+# モデルBlogPostをインポート
+from .models import BlogPost
 
-# Create your views here.
+class IndexView(ListView):
+    '''トップページのビュー
+    
+    投稿記事を一覧表示するのでListViewを継承する
+    
+    Attributes:
+      template_name: レンダリングするテンプレート
+      context_object_name: object_listキーの別名を設定
+      queryset: データベースのクエリ
+    '''
+    # index.htmlをレンダリングする
+    template_name ='blogapp/index.html'
+    # object_listキーの別名を設定
+    context_object_name = 'orderby_records'
+    # モデルBlogPostのオブジェクトにorder_by()を適用して
+    # BlogPostのレコードを投稿日時の降順で並べ替える
+    queryset = BlogPost.objects.order_by('-posted_at')
 
-# クラスベースビュー
-class IndexView(TemplateView):
-    template_name = 'blogapp/index.html'
+
+class BlogDetailView(DetailView):
+
+    '''ブログ詳細ページのビュー
+    
+    投稿記事の詳細を表示するのでDetailViewを継承する
+    
+    Attributes:
+      model: 使用するモデル
+      template_name: レンダリングするテンプレート
+      context_object_name: objectキーの別名を設定
+    '''
+    # blog_detail.htmlをレンダリングする
+    template_name = 'blogapp/post.html'
+
+    # 使用するモデルを指定
+    model = BlogPost
+
