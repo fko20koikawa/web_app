@@ -20,4 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('' , include('blogapp.urls')),    # 追加
+    path('mondai1/' , include('mondai1.urls')),
+    
 ]

@@ -1,10 +1,98 @@
-<!DOCTYPE html>
-<html>
-<head>
-</head>
+{% extends 'blogapp/base.html' %}
+{% load static %}
+<!-- {% static 'assets/img/home-bg.jpg' as HOME_BG %} -->
 
-<body>
-    <h1>Top Page</h1>
-</body>
+{% block title %}Django's Blog{% endblock %}
 
+        {% block header %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{% static "assets/img/home-bg.jpg" %}')">
+<!--        <header class="masthead" style="background-image: url('{{ HOME_BG }}');"> -->
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Django's Blog</h1>
+                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% endblock header %}
+
+        <!-- Main Content-->
+        {% block contents %}
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!--
+                    レコードが格納されたorderby_recordsから
+                    レコードを1行ずつrecordに取り出す
+                    -->
+                    {% for record in orderby_records %}
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <!--
+                        urlでURLパターン'blog-detail/<int:pk>/'を生成し、
+                        詳細ページへのリンクを設定
+                        -->
+                        <a href="{% url 'blogapp:blog_detail' record.pk %}">
+                            <!-- 記事のタイトル -->
+                            <h2 class="post-title">
+                                <!-- titleフィールドを出力 -->
+                                {{record.title}}</h2>
+                            <!-- 投稿記事の本文 -->
+                            <h3 class="post-subtitle">
+                                <!-- サブタイトルの文字サイズを14ptにする -->
+                                <span style="font-size : 14pt">
+                                    <!--
+                                    contentフィールドを出力
+                                    truncatecharsで出力する文字数を50以内に制限
+                                    -->
+                                    {{record.content|truncatechars:50}}
+                                </span>
+                            </h3>
+                        </a>
+                        <p class="post-meta">
+                            <!-- ページの最上部にリンクする -->
+                            <a href="#">Django's Blog</a>
+                            <!-- posted_atフィールドを出力 -->
+                            {{record.posted_at}}に投稿／カテゴリ:
+                            <!-- categoryフィールドを出力-->
+                            {{record.category}}
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+                    <!-- forによる繰り返しはここまで -->
+                    {% endfor %}
+                    
+                    <!-- Post preview-->
+                        <!-- コード削除-->
+                    <!-- Divider-->
+                        <!-- コード削除-->
+                    
+                    <!-- Post preview-->
+                        <!-- コード削除-->
+                    <!-- Divider-->
+                        <!-- コード削除-->
+                    
+                    <!-- Post preview-->
+                        <!-- コード削除-->
+                    <!-- Divider-->
+                        <!-- コード削除-->
+
+                    <!-- Pager-->
+                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                </div>
+            </div>
+        </div>
+        {% endblock contents %}
+        <!-- Footer-->
+
+        <!-- Bootstrap core JS-->
+        
+        <!-- Core theme JS-->
+    </body>
 </html>
