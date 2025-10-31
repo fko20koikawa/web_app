@@ -4,6 +4,8 @@ from django.views.generic import ListView, DetailView
 # モデルBlogPostをインポート
 from .models import BlogPost
 
+# リモートリポジトリ上で修正
+
 class IndexView(ListView):
     '''トップページのビュー
     
