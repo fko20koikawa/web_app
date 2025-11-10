@@ -119,7 +119,24 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# constantsをインポート
+from django.contrib.messages import constants
+# レベル定数を指定するための環境変数MESSAGE_TAGS
+MESSAGE_TAGS = {
+  constants.SUCCESS: 'alert alert-success',
+}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# フォームの送信データをターミナルに出力
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+DEFAULT_FROM_EMAIL = 'mibmibmib13@gmail.com'  # メールの送信元のアドレスを入力
+EMAIL_HOST = 'smtp.gmail.com'            # GmailのSMPTサーバー　　　
+EMAIL_PORT = 587                         # SMPTサーバーのポート番号
+EMAIL_HOST_USER = 'mibmibmib13@gmail.com'     # Gmailのアドレスを入力
+EMAIL_HOST_PASSWORD = 'czenwmilodcubizl' # Gmailのアプリ用パスワードを入力
+EMAIL_USE_TLS = True # SMTP サーバと通信する際に TLS (セキュア) 接続を使う
