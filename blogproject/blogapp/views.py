@@ -142,9 +142,9 @@ class ContactView(FormView):
           '送信者名: {0}\nメールアドレス: {1}\n タイトル:{2}\n メッセージ:\n{3}' \
           .format(name, email, title, message)
         # メールの送信元のアドレス(Gmail)
-        from_email = 'mibmibmib13@gmail.com'
+        from_email = 'admin@example.com'
         # 送信先のメールアドレス(Gmail)
-        to_list = ['mibmibmib13@gmail.com']
+        to_list = ['admin@example.com']
         # EmailMessageオブジェクトを生成
         message = EmailMessage(subject=subject,
                                body=message,

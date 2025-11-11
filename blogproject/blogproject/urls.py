@@ -18,8 +18,10 @@ from django.urls import path, include # , include追加
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    path('' , include('blogapp.urls')),    # 追加
-    path('mondai1/' , include('mondai1.urls')),
-    
+    path('' , include(('blogapp.urls', 'blogapp'), namespace='blogapp')),
+    path('mondai1/', include('mondai1.urls')),
+    path('mondai1_2/', include('mondai1_2.urls')),
+    path('mondai1_3/', include('mondai1_3.urls')),
+    path('mondai2/', include('mondai2.urls')),
+    path('seisaku/', include(('seisaku.urls', 'seisaku'), namespace='seisaku')),  # 制作課題 
 ]

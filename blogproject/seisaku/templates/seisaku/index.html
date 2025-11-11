@@ -1,0 +1,77 @@
+{% extends "seisaku/base.html" %} {# ベーステンプレートを継承 #}
+{% load static %}
+
+{# ページタイトルの設定 #}
+{% block title %}Django's Blog{% endblock %}
+
+<!-- <!DOCTYPE html> を削除 -->
+<!-- <html lang="ja"> を削除 -->
+    <!-- <head>から</head> を削除(base.htmlに移動) -->
+
+    <!-- <body> を削除 -->
+        <!-- Navigation-->
+        <!-- <nav>から</nav> を削除(base.htmlに移動) -->
+        
+        <!-- Page Header-->
+        <!-- <header>から</header> をテンプレートタグで囲む block header  から endblock  -->
+        {% block header %}
+        <header class="masthead" style="background-image: url('{% static "assets/img/home-bg.jpg" %}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Django's Blog</h1>
+                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% endblock %}
+
+        <!-- Main Content-->
+        <!-- <div>から</div> をテンプレートタグで囲む block contents から endblock -->
+        {% block contents %}
+
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    {% for p in posts %}
+                        <div class="post-preview">
+                            <a href="{% url 'seisaku:post' pk=p.pk %}">
+                                <h2 class="post-title">{{ p.title }}</h2>
+                                {% if p.content %}
+                                    <h3 class="post-subtitle">{{ p.content|truncatechars:80 }}</h3>
+                                {% endif %}
+                            </a>
+                            <!-- + 投稿日時/カテゴリをモデルから表示 -->
+                            <p class="post-meta">
+                                投稿日時：{{ p.posted_at|date:"Y年n月j日" }}{% if p.category %} / {{ p.get_category_display }}{% endif %}
+                            </p>
+                        </div>
+                        <!-- Divider-->
+                        <hr class="my-4" />
+                    {% empty %}
+                        <p>投稿がありません。</p>
+                    {% endfor %}
+
+                    <!-- Pager-->
+                    <div class="d-flex justify-content-between mb-4">
+                        {% if page_obj.has_previous %}
+                            <a class="btn btn-primary text-uppercase" href="?page={{ page_obj.previous_page_number }}">← 新しい記事へ</a>
+                        {% else %}<span></span>{% endif %}
+                        {% if page_obj.has_next %}
+                            <a class="btn btn-primary text-uppercase" href="?page={{ page_obj.next_page_number }}">過去の記事へ →</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+        
+        <!-- Footer-->
+        <!-- <footer>から</footer> を削除(base.htmlに移動) -->
+
+        <!-- Bootstrap core JS-->
+        <!-- JS を base.html に移動 -->

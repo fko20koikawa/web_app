@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blogapp.apps.BlogappConfig',
-    'mondai1.apps.Mondai1Config',
+    'mondai1.apps.Mondai1Config',   # 演習問題①
+    'mondai1_2.apps.Mondai1Config', # 演習問題②
+    'mondai1_3.apps.Mondai1Config', # 演習問題③
+    'mondai2.apps.Mondai2Config',
+    'seisaku.apps.SeisakuConfig',   # 制作課題
 ]
 
 MIDDLEWARE = [
@@ -134,9 +138,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # フォームの送信データをターミナルに出力
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DEFAULT_FROM_EMAIL = 'mibmibmib13@gmail.com'  # メールの送信元のアドレスを入力
+DEFAULT_FROM_EMAIL = 'example@gmail.com'  # メールの送信元のアドレスを入力
 EMAIL_HOST = 'smtp.gmail.com'            # GmailのSMPTサーバー　　　
 EMAIL_PORT = 587                         # SMPTサーバーのポート番号
-EMAIL_HOST_USER = 'mibmibmib13@gmail.com'     # Gmailのアドレスを入力
+EMAIL_HOST_USER = 'example@gmail.com'     # Gmailのアドレスを入力
 EMAIL_HOST_PASSWORD = 'czenwmilodcubizl' # Gmailのアプリ用パスワードを入力
 EMAIL_USE_TLS = True # SMTP サーバと通信する際に TLS (セキュア) 接続を使う

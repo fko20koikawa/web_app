@@ -1,0 +1,47 @@
+{% extends "seisaku/base.html" %} {# ベーステンプレートを継承 #}
+{% load static %}
+
+{# ページタイトルの設定 #}
+{% block title %}Django's Blog{% endblock %}
+    <!-- <body> を削除 -->
+        <!-- Navigation-->
+        <!-- <nav>から</nav> を削除 -->
+        
+        <!-- Page Header-->
+        <!-- <header>から</header> をテンプレートタグで囲む block header から endblock -->
+        {% block header %}
+        <header class="masthead" style="background-image: url('{% static "assets/img/post-bg.jpg" %}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>{{ post.title }}</h1>
+                            <span class="meta">
+                                投稿日時：{{ post.posted_at|date:"Y年n月j日" }}
+                                {% if post.category %} / {{ post.get_category_display }}{% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% endblock %}
+
+        <!-- Post Content-->
+        {% block contents %}
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>{{ post.content|linebreaks }}</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- 水平線を追加 -->
+        <!-- <hr> -->
+        {% endblock %}
+        
+        <!-- Footer-->
+        <!-- <footer>以下はベーステンプレートを使用するので削除する -->
+
